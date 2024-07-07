@@ -1,6 +1,7 @@
 import classes from '../styles/ProductFilter.module.css';
 import { useState, useEffect } from 'react';
-import SideBar from './SideBar';
+import Select from './Select';
+import Input from './Input';
 
 const ProductFilter = () => {
     const [products, setProducts] = useState([]);
@@ -46,40 +47,48 @@ const ProductFilter = () => {
         setMaxPrice('');
         // setSortOption('');
         setFilteredProducts(products);
-      };
+    };
     return (
         <div className={`${classes.parent}`}>
-            <SideBar
-                categories={categories}
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                minPrice={minPrice}
-                setMinPrice={setMinPrice}
-                setMaxPrice={setMaxPrice}
-                maxPrice={maxPrice}
-                brands={brands}
-                selectedBrands={selectedBrands}
-                setSelectedBrands={setSelectedBrands}
-            />
+            <div className={`${classes.parent_sidebar}`}>
+                <h2>Filters</h2>
+                <div className={`${classes.filters}`}>
+                    <Select selectedFilter={selectedCategory}
+                        setSelectedFilter={setSelectedCategory}
+                        filterProduct={categories}
+                    />
+                    <Select selectedFilter={selectedBrands}
+                        setSelectedFilter={setSelectedBrands}
+                        filterProduct={brands}
+                    />
+                    <h3>Price:</h3>
+                    <Input price={minPrice}
+                        setPrice={setMinPrice}
+                    />
+                    <Input price={maxPrice}
+                        setPrice={setMaxPrice}
+                    />
+                </div>
+            </div>
             <div className={`${classes.product_side}`}>
                 <div className={`${classes.product_side_top}`}>
-            <button onClick={clearFilters} className={`${classes.clear_btn}`}>Clear Filters</button>
-            <div className={`${classes.heading}`}>Filter Products</div>
+                    <button onClick={clearFilters} className={`${classes.clear_btn}`}>Clear Filters</button>
+                    <div className={`${classes.heading}`}>Filter Products</div>
                 </div>
-            <div className={`${classes.product_list}`}>
-                {filteredProducts.length === 0 ? (
-                    <p>No results found</p>
-                ) : (
-                    filteredProducts.map(product => (
-                        <div key={product.id} className={`${classes.product}`}>
-                            <h3>{product.name}</h3>
-                            <p>Price: ${product.price.toFixed(2)}</p>
-                            <p>Category: {product.category}</p>
-                            <p>Brand: {product.brand}</p>
-                        </div>
-                    ))
-                )}
-            </div>
+                <div className={`${classes.product_list}`}>
+                    {filteredProducts.length === 0 ? (
+                        <p>No results found</p>
+                    ) : (
+                        filteredProducts.map(product => (
+                            <div key={product.id} className={`${classes.product}`}>
+                                <h3>{product.name}</h3>
+                                <p>Price: ${product.price.toFixed(2)}</p>
+                                <p>Category: {product.category}</p>
+                                <p>Brand: {product.brand}</p>
+                            </div>
+                        ))
+                    )}
+                </div>
             </div>
         </div>
     );

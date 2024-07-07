@@ -2,6 +2,10 @@
     display: flex;
     padding-right: 3px;
 }
+.parent_sidebar{
+    border-right: solid 2px #ccc;
+    width: 30%;
+}
 .product_side{
     width: 70%;
     padding: 5px 20px;
@@ -38,6 +42,7 @@ justify-content: space-between;
     border: none;
     background-color: rgb(95, 95, 95);
     color: #fff;
+    cursor: pointer;
   }
 @media (max-width: 576px) {
     .product {
