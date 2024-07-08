@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import classes from '../styles/sidebar.module.css'
-export default function Select({ selectedFilter, setSelectedFilter, filterProduct }) {
+export default function Select({ selectedFilter, setSelectedFilter, filterProduct, filterType }) {
     return (
-        <>
             <div className={`${classes.filters_div}`}>
-                <label className={`${classes.filters_label}`} htmlFor="category">Category:</label>
+                <label className={`${classes.filters_label}`} htmlFor="category">{filterType} :</label>
                 <select
                     id="category"
                     value={selectedFilter}
@@ -16,6 +15,5 @@ export default function Select({ selectedFilter, setSelectedFilter, filterProduc
                     ))}
                 </select>
             </div>
-        </>
     )
 }
