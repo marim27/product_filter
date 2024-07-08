@@ -78,12 +78,14 @@ const ProductFilter = () => {
                             filterProduct={brands}
                             filterType={`brands`}
                         />
-                        <h3>Price :</h3>
+                        {/* <h3>Price :</h3> */}
                         <Input price={minPrice}
                             setPrice={setMinPrice}
+                            filterType={`Min price `}
                         />
                         <Input price={maxPrice}
                             setPrice={setMaxPrice}
+                            filterType={`Max price `}
                         />
                     </div>
                 </aside>
