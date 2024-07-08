@@ -9,7 +9,7 @@ export default function SortedFilter({ sortOption, setSortOption }) {
                 id="sortOption"
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value)}
-                className={`${classes.filters_input}`}
+                className={`${classes.filters_input_select} ${classes.filters_select}`}
             >
                 <option value="">Popularity</option>
                 <option value="price-asc">Lowest price</option>

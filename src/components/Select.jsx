@@ -8,7 +8,7 @@ export default function Select({ selectedFilter, setSelectedFilter, filterProduc
                     id="category"
                     value={selectedFilter}
                     onChange={(e) => setSelectedFilter(e.target.value)}
-                    className={`${classes.filters_input}`}>
+                    className={`${classes.filters_select} ${classes.filters_input_select}`}>
                     <option value="">All</option>
                     {filterProduct.map(category => (
                         <option key={category} value={category}>{category}</option>

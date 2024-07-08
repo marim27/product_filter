@@ -8,7 +8,7 @@ export default function Input({ price, setPrice }) {
                 <input
                     type="number"
                     id="minPrice"
-                    className={`${classes.filters_input}`}
+                    className={`${classes.filters_input} ${classes.filters_input_select}`}
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                 />
