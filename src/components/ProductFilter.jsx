@@ -20,7 +20,6 @@ const ProductFilter = () => {
             .then(response => response.json())
             .then(data => {
                 setProducts(data);
-                // setFilteredProducts(data);
                 setBrands([...new Set(data.map(product => product.brand))]);
                 setCategories([...new Set(data.map(product => product.category))]);
             })
@@ -65,9 +64,9 @@ const ProductFilter = () => {
                 <aside className={`${classes.parent_sidebar}`}>
                     <h2>Filters</h2>
                     <div className={`${classes.filters}`}>
-                        <SortedFilter 
-                        sortOption={sortOption}
-                        setSortOption={setSortOption}
+                        <SortedFilter
+                            sortOption={sortOption}
+                            setSortOption={setSortOption}
                         />
                         <Select selectedFilter={selectedCategory}
                             setSelectedFilter={setSelectedCategory}
@@ -78,7 +77,7 @@ const ProductFilter = () => {
                             setSelectedFilter={setSelectedBrands}
                             filterProduct={brands}
                             filterType={`brands`}
-                            />
+                        />
                         <h3>Price :</h3>
                         <Input price={minPrice}
                             setPrice={setMinPrice}

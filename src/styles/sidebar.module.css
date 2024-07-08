@@ -8,7 +8,7 @@
     width: 95%;
 }
 
-.label_brand{
+.label_brand {
     margin: 0 5px 5px 5px;
     font-weight: 500;
 }
@@ -25,9 +25,11 @@
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
 }
+
 .filters_select {
     width: 100%;
 }
+
 .filters_input {
     width: 90%;
 }
