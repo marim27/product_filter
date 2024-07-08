@@ -6,23 +6,24 @@ import Header from './Header';
 import SortedFilter from './SortedFilter';
 
 const ProductFilter = () => {
-    const [products, setProducts] = useState([]); // State to store all products
-    const [filteredProducts, setFilteredProducts] = useState([]); // State to store filtered products based on filters
-    const [categories, setCategories] = useState([]); // State to store unique categories for the filter
-    const [brands, setBrands] = useState([]); // State to store unique brands for the filter
-    const [selectedBrands, setSelectedBrands] = useState([]); // State to store selected brands
-    const [selectedCategory, setSelectedCategory] = useState(''); // State to store selected category
-    const [minPrice, setMinPrice] = useState(''); // State to store minimum price
-    const [maxPrice, setMaxPrice] = useState(''); // State to store maximum price
-    const [sortOption, setSortOption] = useState(''); // State to store sorting option
+    const [products, setProducts] = useState([]); //store all products
+    const [filteredProducts, setFilteredProducts] = useState([]); //store filtered products based on filters
+    const [categories, setCategories] = useState([]); //store unique categories for the filter
+    const [brands, setBrands] = useState([]); //store unique brands for the filter
+    const [selectedBrands, setSelectedBrands] = useState([]); //store selected brands for filtering
+    const [selectedCategory, setSelectedCategory] = useState(''); //store selected category for filtering
+    const [minPrice, setMinPrice] = useState(''); //store minimum price for filtering
+    const [maxPrice, setMaxPrice] = useState(''); //store maximum price for filtering
+    const [sortOption, setSortOption] = useState(''); //store sorting option
 
     useEffect(() => {
         fetch('./data.json')
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
-                setBrands([...new Set(data.map(product => product.brand))]); //Extract brands from the products data
-                setCategories([...new Set(data.map(product => product.category))]); //Extract categories from the products data
+                 //Extract brands & categories from the products data
+                setBrands([...new Set(data.map(product => product.brand))]);
+                setCategories([...new Set(data.map(product => product.category))]);
             })
             .catch((error) =>
                 console.error(`Error fetching products data :`, error)
@@ -35,7 +36,7 @@ const ProductFilter = () => {
             // Convert price inputs to numbers, default to 0 and Infinity if not provided
             const min = parseFloat(minPrice) || 0;
             const max = parseFloat(maxPrice) || Infinity;
-            // Filter products based on selected category, brands, and price range
+            // Filter products based on selected filters
             let filtered = products.filter(product => {
                 const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
                 const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
