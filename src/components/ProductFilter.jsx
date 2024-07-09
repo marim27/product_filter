@@ -9,12 +9,12 @@ const ProductFilter = () => {
     const [products, setProducts] = useState([]); //store all products
     const [filteredProducts, setFilteredProducts] = useState([]); //store filtered products based on filters
     const [categories, setCategories] = useState([]); //store unique categories for the filter
-    const [brands, setBrands] = useState([]); //store unique brands for the filter
-    const [selectedBrands, setSelectedBrands] = useState([]); //store selected brands for filtering
+    const [brands, setBrands] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(''); //store selected category for filtering
-    const [minPrice, setMinPrice] = useState(''); //store minimum price for filtering
-    const [maxPrice, setMaxPrice] = useState(''); //store maximum price for filtering
-    const [sortOption, setSortOption] = useState(''); //store sorting option
+    const [selectedBrands, setSelectedBrands] = useState([]);
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
+    const [sortOption, setSortOption] = useState('');
 
     useEffect(() => {
         fetch('./data.json')
@@ -31,19 +31,18 @@ const ProductFilter = () => {
     }, []);
 
     useEffect(() => {
-        //Apply filters and sorting whenever relevant state changes
+        //filters and sorting whenever relevant state changes
         const filterProducts = () => {
             // Convert price inputs to numbers, default to 0 and Infinity if not provided
             const min = parseFloat(minPrice) || 0;
             const max = parseFloat(maxPrice) || Infinity;
-            // Filter products based on selected filters
+            // Filter products
             let filtered = products.filter(product => {
                 const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
                 const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
                 const matchesPrice = product.price >= min && product.price <= max;
                 return matchesCategory && matchesPrice && matchesBrand;
             });
-            // Sort filtered products based on selected sorting option
             if (sortOption === 'price-asc') {
                 filtered = filtered.sort((a, b) => a.price - b.price);
             } else if (sortOption === 'price-desc') {
